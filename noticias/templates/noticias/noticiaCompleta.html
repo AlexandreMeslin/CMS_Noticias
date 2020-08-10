@@ -1,0 +1,28 @@
+{% extends 'inicio/nav.html' %}
+
+{% block title %}Noticia: {{ noticia.titulo }}{% endblock %}
+
+{% block content %}
+  <h1>{{ noticia.titulo }}</h1>
+
+  {% if noticia.link %}
+    <a href="{{ noticia.link }}">
+  {% endif %}
+    {% if noticia.imagem %}
+      <img src="{{ noticia.imagem.url }}" alt="Imagem da noticia">
+    {% else %}
+      link
+    {% endif %}
+  {% if noticia.link %}
+    </a>
+  {% endif %}
+
+  <h5>{{ noticia.data|date:'d/m/Y' }}</h5>
+  <h3>{{ noticia.subtitulo }}</h3>
+
+  <p>
+    {{ noticia.conteudo|safe }}
+  </p>
+
+  </div>
+{% endblock %}

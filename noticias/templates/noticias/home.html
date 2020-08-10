@@ -1,0 +1,24 @@
+{% extends 'inicio/nav.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<h1>Home Page de Notícias</h1>
+
+<p>
+  <!-- pluralize nao funciona em portugues -->
+  Hoje nos temos {{ noticias.count }} noticia{{ noticias.count|pluralize }}.
+</p>
+
+{% for noticia in noticias %}
+
+<div class='container text-center'>
+  <a href="{% url 'noticias:noticiaCompleta' noticia.id %}">
+    <h2>{{ noticia.titulo }}</h2>
+    <h5>{{ noticia.data|date:'d/m/Y' }}</h5>
+    <h3>{{ noticia.subtitulo }}</h3>
+    {{ noticia.conteudo|striptags|truncatechars:52 }}
+  </a>
+</div>
+
+{% endfor %}
+{% endblock %}
